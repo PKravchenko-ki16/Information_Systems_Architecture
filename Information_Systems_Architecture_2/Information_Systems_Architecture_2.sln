@@ -9,9 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "BL\BL.csproj", "{8693
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModel", "ViewModel\ViewModel.csproj", "{392A68E1-9485-4155-8574-0A3A8F3891C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{085C8FAA-8266-4BFF-A201-B506EAA77DD3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityDAL", "DAL\EntityDAL.csproj", "{085C8FAA-8266-4BFF-A201-B506EAA77DD3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewWPF", "ViewWPF\ViewWPF.csproj", "{823811BD-FF10-47F3-A8A5-2B0AD771DD19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoDEL", "AdoDEL\AdoDEL.csproj", "{1DD4D86C-6D7B-4A26-AFF7-2CB75A4D1A15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{823811BD-FF10-47F3-A8A5-2B0AD771DD19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{823811BD-FF10-47F3-A8A5-2B0AD771DD19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{823811BD-FF10-47F3-A8A5-2B0AD771DD19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DD4D86C-6D7B-4A26-AFF7-2CB75A4D1A15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DD4D86C-6D7B-4A26-AFF7-2CB75A4D1A15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DD4D86C-6D7B-4A26-AFF7-2CB75A4D1A15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DD4D86C-6D7B-4A26-AFF7-2CB75A4D1A15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
