@@ -15,10 +15,8 @@ namespace Model
         public string Name { get; set; }
         public int Age { get; set; }
         public decimal Salary { get; set; }
-        [Column(TypeName = "smallint")]
-        public int Status { get; set; }
-        [Column(TypeName = "smallint")]
-        public int Position { get; set; }
+        public EnumStatus Status { get; set; }
+        public EnumPosition Position { get; set; }
         public ICollection<Project> Project { get; set; }
         public Employee()
         {

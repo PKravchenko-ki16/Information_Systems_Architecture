@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="DomainObject.cs" />
     <Compile Include="Employee.cs" />
+    <Compile Include="EnumPosition.cs" />
+    <Compile Include="EnumStatus.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
