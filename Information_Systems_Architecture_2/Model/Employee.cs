@@ -8,8 +8,11 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Employee : DomainObject
+    public class Employee : IDomainObject
     {
+        [Key]
+        public int Id { get; set; }
+
         [Required]
         [StringLength(30, MinimumLength = 3)]
         public string Name { get; set; }
@@ -18,6 +21,7 @@ namespace Model
         public EnumStatus Status { get; set; }
         public EnumPosition Position { get; set; }
         public ICollection<Project> Project { get; set; }
+
         public Employee()
         {
             Project = new List<Project>();

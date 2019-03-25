@@ -3,7 +3,7 @@ using Model;
 
 namespace EntityDAL
 {
-    public class EntityRepository<T> : IRepository<T> where T : DomainObject, new()
+    public class EntityRepository<T> : IRepository<T> where T : class, IDomainObject, new()
     {
         private readonly DataContext _context;
 

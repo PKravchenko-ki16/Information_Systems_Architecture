@@ -14,7 +14,11 @@ namespace EntityDAL
         public DbSet<Project> Projects { get; set; }
 
         public DataContext()
-            : base("DefaultConnection")
+            : base("DataContext")
         { }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

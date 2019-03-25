@@ -42,10 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DomainObject.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="EnumPosition.cs" />
     <Compile Include="EnumStatus.cs" />
+    <Compile Include="IDomainObject.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Project.cs" />
