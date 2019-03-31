@@ -33,7 +33,7 @@ namespace EntityDAL
 
         public void Update(T obj)
         {
-            //_context.Set<T>();
+            _context.Entry(obj).State = System.Data.Entity.EntityState.Modified;
         }
     }
 }
