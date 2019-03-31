@@ -16,15 +16,24 @@ namespace EntityDAL
         {
             return _context.Set<T>();
         }
+        public T Get(int id)
+        {
+            return _context.Set<T>().Find(id);
+        }
 
         public void Delete(T obj)
         {
             _context.Set<T>().Remove(obj);
         }
 
-        public void Add(T obj)
+        public void Create(T obj)
         {
             _context.Set<T>().Add(obj);
+        }
+
+        public void Update(T obj)
+        {
+            //_context.Set<T>();
         }
     }
 }

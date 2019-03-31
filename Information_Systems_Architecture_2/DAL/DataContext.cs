@@ -16,6 +16,12 @@ namespace EntityDAL
         public DataContext()
             : base("DataContext")
         { }
+
+        static DataContext()
+        {
+            //Инициализация пустой БД.
+           //Database.SetInitializer(new ContextInitializer());
+        }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

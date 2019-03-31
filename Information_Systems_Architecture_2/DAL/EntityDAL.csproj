@@ -54,8 +54,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContextInitializer.cs" />
     <Compile Include="DataContext.cs" />
     <Compile Include="EntityRepository.cs" />
+    <Compile Include="InitializerEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>

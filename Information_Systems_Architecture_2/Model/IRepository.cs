@@ -6,7 +6,9 @@ namespace Model
         where T : IDomainObject, new()
     {
         IEnumerable<T> GetAll();
+        T Get(int id);
+        void Update(T obj);
         void Delete(T obj);
-        void Add(T obj);
+        void Create(T obj);
     }
 }
