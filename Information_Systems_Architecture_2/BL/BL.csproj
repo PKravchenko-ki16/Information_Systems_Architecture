@@ -47,10 +47,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLEmployee.cs" />
+    <Compile Include="BLProject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AdoDEL\AdoDEL.csproj">
+      <Project>{1dd4d86c-6d7b-4a26-aff7-2cb75a4d1a15}</Project>
+      <Name>AdoDEL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\EntityDAL.csproj">
+      <Project>{085c8faa-8266-4bff-a201-b506eaa77dd3}</Project>
+      <Name>EntityDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{eada2461-f813-4471-9a33-d99b86350095}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ViewModel\ViewModel.csproj">
+      <Project>{392a68e1-9485-4155-8574-0a3a8f3891c8}</Project>
+      <Name>ViewModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
