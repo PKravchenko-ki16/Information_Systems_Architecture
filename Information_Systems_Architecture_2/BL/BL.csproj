@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADOBLEmployee.cs" />
+    <Compile Include="ADOBLProject.cs" />
     <Compile Include="BLEmployee.cs" />
     <Compile Include="BLProject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
