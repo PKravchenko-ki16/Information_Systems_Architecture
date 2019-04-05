@@ -1,6 +1,6 @@
 ﻿using System;
-using Model;
-using EntityUnitOfWork = EntityDAL.UnitOfWork;
+using ViewModel;
+using BL;
 
 namespace TsetConsoleApp
 {
@@ -8,16 +8,22 @@ namespace TsetConsoleApp
     {
         static void Main(string[] args)
         {
-            var entity = new EntityUnitOfWork();
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    entity.Employees.Create(new Employee { Name = string.Format("Employee{0}", i) });
-            //}
-            //entity.SaveChanges();
-            foreach (var employees in entity.Employees.GetAll())
+
+            BLEmployee employee = new BLEmployee();
+
+            foreach (var employees in employee.GetAllEmployees())
             {
-                Console.WriteLine("{0} ", employees.Id);
+                Console.WriteLine("{0} {1}", employees.Id, employees.Name);
             }
+
+            BLProject project = new BLProject();
+
+            foreach (var projects in project.GetAllProjects())
+            {
+                Console.WriteLine("{0} {1}", projects.Id, projects.Name);
+            }
+
+
             Console.WriteLine("End.");
             Console.ReadKey();
         }
