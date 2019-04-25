@@ -20,7 +20,7 @@ namespace Model
         public decimal Salary { get; set; }
         public EnumStatus Status { get; set; }
         public EnumPosition Position { get; set; }
-        public ICollection<Project> Project { get; set; }
+        public virtual ICollection<Project> Project { get; set; }
 
         public Employee()
         {

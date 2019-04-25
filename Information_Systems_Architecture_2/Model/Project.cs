@@ -13,12 +13,12 @@ namespace Model
         [StringLength(30, MinimumLength = 3)]
         public string Name { get; set; }
 
-        public ICollection<Employee> Employee { get; set; }
+        public virtual ICollection<Employee> Employees { get; set; }
 
 
         public Project()
         {
-            Employee = new List<Employee>();
+            Employees = new List<Employee>();
         }
     }
 }

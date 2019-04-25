@@ -1,12 +1,40 @@
-﻿using System;
+﻿using AdoDEL;
+using Model;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BL
 {
     public class ADOBLProject
     {
+        private UnitOfWork entity;
+        public ADOBLProject()
+        {
+            entity = new UnitOfWork();
+        }
+
+        public IEnumerable<Project> GetAllProjects()
+        {
+            return entity.Projects.GetAll();
+        }
+
+        //public void CreateProject(Project project)
+        //{
+        //}
+
+        //public Project GetByIdProject(int id)
+        //{
+        //}
+
+        //public void DeleteProject(Project project)
+        //{
+        //}
+
+        //public void UpdateProject(Project project)
+        //{
+        //}
+
+        //public void Commit()
+        //{
+        //}
     }
 }
