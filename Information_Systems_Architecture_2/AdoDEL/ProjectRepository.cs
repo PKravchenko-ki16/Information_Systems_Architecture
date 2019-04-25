@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Model;
 
 namespace AdoDEL
@@ -12,11 +15,6 @@ namespace AdoDEL
         public ProjectRepository(string connectionString)
         {
             _connectionString = connectionString;
-        }
-
-        public override Project Get(int id)
-        {
-            throw new NotImplementedException();
         }
 
         public override IEnumerable<Project> GetAll()
@@ -45,7 +43,7 @@ namespace AdoDEL
             }
         }
 
-        public override string Update()
+        public override string GetUpdateScript()
         {
             string script = string.Empty;
             string delScriptTemplate = "DELETE FROM dbo.Projects WHERE Id IN ({0})";

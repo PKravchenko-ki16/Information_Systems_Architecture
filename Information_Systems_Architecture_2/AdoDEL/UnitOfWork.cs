@@ -39,7 +39,7 @@ namespace AdoDEL
                 {
                     conn.Open();
                     string cmdText = string.Join("\n",
-                        new[] { _projects.Update(), _employees.Update() });
+                        new[] { _projects.GetUpdateScript(), _employees.GetUpdateScript() });
 
                     var command = new SqlCommand(cmdText, conn);
                     command.ExecuteNonQuery();

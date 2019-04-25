@@ -37,9 +37,5 @@ namespace BL
         {
             entity.Projects.Update(project);
         }
-        public void Commit()
-        {
-            entity.SaveChanges();
-        }
     }
 }

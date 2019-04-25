@@ -33,7 +33,7 @@ namespace EntityDAL
             }
             foreach (var i in _listProject)
             {
-                i.Employees = _listEmployee.Select(it => it).Where(it => it.Id == 0 & it.Id == 2 & it.Id == 3 & it.Id == 4 & it.Id == 6 & it.Id == 8 & it.Id == 10).ToList();
+                i.Employee = _listEmployee.Select(it => it).Where(it => it.Id == 0 & it.Id == 2 & it.Id == 3 & it.Id == 4 & it.Id == 6 & it.Id == 8 & it.Id == 10).ToList();
 
             }
         }
