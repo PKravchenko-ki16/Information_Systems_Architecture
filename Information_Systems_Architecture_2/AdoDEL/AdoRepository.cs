@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdoDEL
 {
@@ -16,7 +14,7 @@ namespace AdoDEL
         protected List<T> Deleted { get { return _deleted; } }
 
         public abstract IEnumerable<T> GetAll();
-        public abstract string GetUpdateScript();
+        public abstract string Update();
 
         public void Delete(T obj)
         {
@@ -24,14 +22,6 @@ namespace AdoDEL
                 _added.Remove(obj);
             else if (!_deleted.Contains(obj))
                 _deleted.Add(obj);
-        }
-
-        public void Add(T obj)
-        {
-            if (_deleted.Contains(obj))
-                _deleted.Remove(obj);
-            if (!_added.Contains(obj))
-                _added.Add(obj);
         }
 
         protected IEnumerable<int> DeletedIds
@@ -45,19 +35,16 @@ namespace AdoDEL
             Deleted.Clear();
         }
 
-        public T Get(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(T obj)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract T Get(int id);
 
         public void Create(T obj)
         {
-            throw new NotImplementedException();
+            if (_deleted.Contains(obj))
+                _deleted.Remove(obj);
+            if (!_added.Contains(obj))
+                _added.Add(obj);
         }
+
+        public void Update(T obj) => throw new NotImplementedException();
     }
 }

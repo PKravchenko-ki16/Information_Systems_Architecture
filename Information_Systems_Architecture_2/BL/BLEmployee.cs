@@ -36,5 +36,10 @@ namespace BL
         {
             entity.Employees.Update(employee);
         }
+
+        public void Commit()
+        {
+            entity.SaveChanges();
+        }
     }
 }
