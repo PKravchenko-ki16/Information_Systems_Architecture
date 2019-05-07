@@ -45,6 +45,20 @@ namespace AdoDEL
                 _added.Add(obj);
         }
 
-        public void Update(T obj) => throw new NotImplementedException();
+        public void Update(T obj)
+        {
+            try
+            {
+                throw new NotSupportedException();
+            }
+            catch (NotSupportedException)
+            {
+                Console.WriteLine("Просто проигнорируем это исключение!");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

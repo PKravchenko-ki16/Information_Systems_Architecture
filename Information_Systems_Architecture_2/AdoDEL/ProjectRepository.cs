@@ -16,7 +16,31 @@ namespace AdoDEL
 
         public override Project Get(int id)
         {
-            throw new NotImplementedException();
+            foreach (var project in Added)
+            {
+                if (project.Id == id)
+                {
+                   return project;
+                }
+            }
+
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+                string cmdText = $"SELECT Id, Name FROM dbo.Projects where Id={id}";
+                if (Deleted.Count > 0)
+                    cmdText += string.Format(" OR Id NOT IN ({0})", string.Join(",", DeletedIds));
+
+                var command = new SqlCommand(cmdText, conn);
+                using (var reader = command.ExecuteReader())
+                {
+                    reader.Read();
+                    var project = new Project { Id = (int)reader["Id"], Name = (string)reader["Name"] };
+                    return project;
+                }
+            }
+            
+
         }
 
         public override IEnumerable<Project> GetAll()

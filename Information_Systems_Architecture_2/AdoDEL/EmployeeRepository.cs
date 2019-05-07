@@ -16,7 +16,38 @@ namespace AdoDEL
 
         public override Employee Get(int id)
         {
-            throw new NotImplementedException();
+            foreach (var employee in Added)
+            {
+                if (employee.Id == id)
+                {
+                    return employee;
+                }
+            }
+
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+                string cmdText = $"SELECT Id, Name, Age, Salary, Status, Position FROM dbo.Employees WHERE Id={id}";
+
+                if (Deleted.Count > 0)
+                    cmdText += string.Format(" OR e.Id NOT IN ({0})", string.Join(",", DeletedIds));
+
+                var command = new SqlCommand(cmdText, conn);
+                using (var reader = command.ExecuteReader())
+                {
+                  reader.Read();
+                  var employee = new Employee
+                  {
+                     Id = (int)reader["Id"],
+                     Name = (string)reader["Name"],
+                     Age = (int)reader["Age"],
+                     Salary = (decimal)reader["Salary"],
+                     Status = (Model.EnumStatus)reader["Status"],
+                     Position = (Model.EnumPosition)reader["Position"]
+                  };
+                  return employee;
+                }
+            }
         }
 
         public override IEnumerable<Employee> GetAll()
@@ -29,7 +60,7 @@ namespace AdoDEL
             using (var conn = new SqlConnection(_connectionString))
             {
                 conn.Open();
-                string cmdText = "SELECT Id, Name FROM dbo.Employees";
+                string cmdText = "SELECT Id, Name, Age, Salary, Status, Position FROM dbo.Employees";
 
                 if (Deleted.Count > 0)
                     cmdText += string.Format(" where e.Id NOT IN ({0})", string.Join(",", DeletedIds));
@@ -42,7 +73,11 @@ namespace AdoDEL
                         var employee = new Employee
                         {
                             Id = (int)reader["Id"],
-                            Name = (string)reader["Name"]
+                            Name = (string)reader["Name"],
+                            Age = (int)reader["Age"],
+                            Salary = (decimal)reader["Salary"],
+                            Status = (Model.EnumStatus)reader["Status"],
+                            Position = (Model.EnumPosition)reader["Position"]
                         };
                         yield return employee;
                     }

@@ -17,24 +17,24 @@ namespace BL
             return entity.Projects.GetAll();
         }
 
-        //public void CreateProject(Project project)
-        //{
-        //}
+        public void CreateProject(Project project)
+        {
+            entity.Projects.Create(project);
+        }
 
-        //public Project GetByIdProject(int id)
-        //{
-        //}
+        public Project GetByIdProject(int id)
+        {
+            return entity.Projects.Get(id);
+        }
 
-        //public void DeleteProject(Project project)
-        //{
-        //}
+        public void DeleteProject(Project project)
+        {
+            entity.Projects.Delete(project);
+        }
 
-        //public void UpdateProject(Project project)
-        //{
-        //}
-
-        //public void Commit()
-        //{
-        //}
+        public void Commit()
+        {
+            entity.SaveChanges();
+        }
     }
 }

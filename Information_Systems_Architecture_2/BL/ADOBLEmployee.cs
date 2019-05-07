@@ -17,25 +17,24 @@ namespace BL
             return entity.Employees.GetAll();
         }
 
-        //public void CreateEmployee(Employee employee)
-        //{
-        //}
+        public void CreateEmployee(Employee employee)
+        {
+            entity.Employees.Create(employee);
+        }
 
-        //public Employee GetByIdEmployee(int id)
-        //{
-        //}
+        public Employee GetByIdEmployee(int id)
+        {
+           return entity.Employees.Get(id);
+        }
 
-        //public void DeleteEmployee(Employee employee)
-        //{
-        //}
-
-        //public void UpdateEmployee(Employee employee)
-        //{
-        //}
+        public void DeleteEmployee(Employee employee)
+        {
+           entity.Employees.Delete(employee);
+        }
 
         public void Commit()
         {
-            entity.SaveChanges();
+           entity.SaveChanges();
         }
     }
 }
