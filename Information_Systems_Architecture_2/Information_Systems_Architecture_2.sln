@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.168
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{EADA2461-F813-4471-9A33-D99B86350095}"
 EndProject
@@ -26,7 +26,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewWPF", "ViewWPF\ViewWPF.
 		{392A68E1-9485-4155-8574-0A3A8F3891C8} = {392A68E1-9485-4155-8574-0A3A8F3891C8}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoDEL", "AdoDEL\AdoDEL.csproj", "{1DD4D86C-6D7B-4A26-AFF7-2CB75A4D1A15}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoDAL", "AdoDEL\AdoDAL.csproj", "{1DD4D86C-6D7B-4A26-AFF7-2CB75A4D1A15}"
 	ProjectSection(ProjectDependencies) = postProject
 		{EADA2461-F813-4471-9A33-D99B86350095} = {EADA2461-F813-4471-9A33-D99B86350095}
 	EndProjectSection

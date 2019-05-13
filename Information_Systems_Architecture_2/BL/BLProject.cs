@@ -23,7 +23,7 @@ namespace BL
             entity.Projects.Create(project);
         }
 
-        public Project GetByIdEmployee(int id)
+        public Project GetByIdProject(int id)
         {
             return entity.Projects.Get(id);
         }

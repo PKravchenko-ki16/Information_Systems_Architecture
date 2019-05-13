@@ -64,9 +64,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AdoDEL\AdoDEL.csproj">
+    <ProjectReference Include="..\AdoDEL\AdoDAL.csproj">
       <Project>{1dd4d86c-6d7b-4a26-aff7-2cb75a4d1a15}</Project>
-      <Name>AdoDEL</Name>
+      <Name>AdoDAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\BL\BL.csproj">
       <Project>{869335b0-1d37-46a5-9133-b89379a43d0e}</Project>

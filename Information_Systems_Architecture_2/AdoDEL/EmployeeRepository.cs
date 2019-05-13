@@ -1,7 +1,9 @@
 ﻿using Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace AdoDEL
 {
@@ -16,18 +18,28 @@ namespace AdoDEL
 
         public override Employee Get(int id)
         {
-            foreach (var employee in Added)
+            foreach (var emp in Added)
             {
-                if (employee.Id == id)
+                if (emp.Id == id)
                 {
-                    return employee;
+                    return emp;
                 }
             }
 
             using (var conn = new SqlConnection(_connectionString))
             {
                 conn.Open();
-                string cmdText = $"SELECT Id, Name, Age, Salary, Status, Position FROM dbo.Employees WHERE Id={id}";
+                string cmdText = string.Concat(
+                $"SELECT e.Name as EmployeeName " +
+                    $",e.Id as EmployeeId",
+                    $",e.Age as EmployeeAge",
+                    $",e.Salary as EmployeeSalary",
+                    $",e.Status as EmployeeStatus",
+                    $",e.Position as EmployeePosition",
+                    $",p.Id as ProjectId",
+                    $",p.Name as ProjectName ",
+                 $"FROM dbo.Employees e ",
+                 $"JOIN dbo.Projects p ON p.Id = ANY(SELECT pe.Project_Id FROM dbo.ProjectEmployees pe where pe.Employee_Id = {id}) where e.Id = {id}");
 
                 if (Deleted.Count > 0)
                     cmdText += string.Format(" OR e.Id NOT IN ({0})", string.Join(",", DeletedIds));
@@ -35,54 +47,81 @@ namespace AdoDEL
                 var command = new SqlCommand(cmdText, conn);
                 using (var reader = command.ExecuteReader())
                 {
-                  reader.Read();
-                  var employee = new Employee
-                  {
-                     Id = (int)reader["Id"],
-                     Name = (string)reader["Name"],
-                     Age = (int)reader["Age"],
-                     Salary = (decimal)reader["Salary"],
-                     Status = (Model.EnumStatus)reader["Status"],
-                     Position = (Model.EnumPosition)reader["Position"]
-                  };
-                  return employee;
+                    reader.Read();
+                        var employee = new Employee
+                        {
+                            Id = (int)reader["EmployeeId"],
+                            Name = (string)reader["EmployeeName"],
+                            Age = (int)reader["EmployeeAge"],
+                            Salary = (decimal)reader["EmployeeSalary"],
+                            Status = (Model.EnumStatus)reader["EmployeeStatus"],
+                            Position = (Model.EnumPosition)reader["EmployeePosition"],
+                            Project = new List<Project>() { new Project { Id = (int)reader["ProjectId"], Name = (string)reader["ProjectName"] } }
+                        };
+                        return employee;
                 }
             }
         }
 
         public override IEnumerable<Employee> GetAll()
         {
+            List<Employee> allEmployee = new List<Employee>();
+
             foreach (var employee in Added)
             {
-                yield return employee;
+                allEmployee.Add(employee);
             }
 
             using (var conn = new SqlConnection(_connectionString))
             {
                 conn.Open();
-                string cmdText = "SELECT Id, Name, Age, Salary, Status, Position FROM dbo.Employees";
+
+                string cmdText = string.Concat(
+                    "SELECT e.Name as EmployeeName " +
+                        ",e.Id as EmployeeId",
+                        ",e.Age as EmployeeAge",
+                        ",e.Salary as EmployeeSalary",
+                        ",e.Status as EmployeeStatus",
+                        ",e.Position as EmployeePosition",
+                        ",p.Id as ProjectId",
+                        ",p.Name as ProjectName ",
+                    "FROM dbo.Employees e ",
+                    "JOIN dbo.Projects p ON p.Id = ANY(SELECT pe.Project_Id FROM dbo.ProjectEmployees pe where pe.Employee_Id  = e.Id)");
 
                 if (Deleted.Count > 0)
                     cmdText += string.Format(" where e.Id NOT IN ({0})", string.Join(",", DeletedIds));
 
                 var command = new SqlCommand(cmdText, conn);
+
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         var employee = new Employee
                         {
-                            Id = (int)reader["Id"],
-                            Name = (string)reader["Name"],
-                            Age = (int)reader["Age"],
-                            Salary = (decimal)reader["Salary"],
-                            Status = (Model.EnumStatus)reader["Status"],
-                            Position = (Model.EnumPosition)reader["Position"]
+                            Id = (int)reader["EmployeeId"],
+                            Name = (string)reader["EmployeeName"],
+                            Age = (int)reader["EmployeeAge"],
+                            Salary = (decimal)reader["EmployeeSalary"],
+                            Status = (Model.EnumStatus)reader["EmployeeStatus"],
+                            Position = (Model.EnumPosition)reader["EmployeePosition"],
                         };
-                        yield return employee;
+                        if (allEmployee.Where(t => t.Id == employee.Id).Count() == 0)
+                        {
+                            allEmployee.Add(employee);
+                        }
+                        int selectedemployeesForProject = allEmployee.Where(t => t.Id == employee.Id).Count();
+                        if (allEmployee.Where(t => t.Id == employee.Id).Count() != 0)
+                        {
+                            foreach (var emp in allEmployee)
+                            {
+                                if (emp.Id == employee.Id) emp.Project.Add(new Project { Id = (int)reader["ProjectId"], Name = (string)reader["ProjectName"] });
+                            }
+                        }
                     }
                 }
             }
+            return allEmployee;
         }
 
         public override string Update()
